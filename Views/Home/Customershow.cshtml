@@ -1,0 +1,44 @@
+
+ <a  asp-controller="Home"  asp-action="orders"><button>Orders</button></a>
+ <a  asp-controller="Home"  asp-action="Index"><button>Dashboard</button></a>
+ <a  asp-controller="Home"  asp-action="products"><button>Products</button></a>
+<a  asp-controller="Home"  asp-action="logout"><button>Logout</button></a>
+<a  asp-controller="Home"  asp-action="customers"><button>Customers</button></a>
+
+<form action="addcust" method="post">
+      <p> Name: <input type="text" name="CustomerName"/></p>
+    <button type="submit">Create!</button>
+</form>
+<div>
+    @{
+        if (@ViewBag.status=="custaddfail"){
+        foreach(var error in ViewBag.errors)
+            {
+                if(@error.Errors.Count > 0)
+                {
+                    <p>@error.Errors[0].ErrorMessage</p>
+                }
+            }
+    
+        }
+        if (@ViewBag.status=="custadddup"){
+            <p> ViewBag.errors</p>
+        }
+        
+    }
+    </div>
+
+<table style="width:75%">
+  <tr>
+    <th>CustomerName</th>
+    <th>Created Date</th>
+     <th>Action</th>
+  </tr>  
+  @if(@ViewBag.Customerinfos != null){
+      @foreach ( var cust in @ViewBag.Customerinfos){
+    <tr>
+    <td>@cust.CustomerName</td>
+    <td>@cust.CreatedAt</td>
+     <td><a href="customer/remove/@cust.CustomerId"><button>Remove</button></a></td>
+    </tr>
+      }}

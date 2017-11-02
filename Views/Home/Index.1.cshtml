@@ -1,0 +1,45 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+ 
+ <a  asp-controller="Home"  asp-action="orders"><button>Orders</button></a>
+ <a  asp-controller="Home"  asp-action="Index"><button>Dashboard</button></a>
+ <a  asp-controller="Home"  asp-action="products"><button>Products</button></a>
+<a  asp-controller="Home"  asp-action="logout"><button>Logout</button></a>
+<a  asp-controller="Home"  asp-action="customers"><button>Customers</button></a>
+
+
+    <p> Product Listing</p>
+     @if(@ViewBag.AllProductInfos != null){
+            @foreach(var a in  @ViewBag.AllProductInfos){
+                <img [src]=@a.Imageurl>
+                <p>@a.ProductName</p>
+                <p>@a.InitialQty left... </p> 
+            }}
+     
+    <p> Customers joined recently</p>
+     @if(@ViewBag.Customerinfos != null){
+    @foreach(var a in  @ViewBag.Customerinfos){
+              <p>@a.CustomerName</p>
+       }
+     }
+
+         <p> Recent Orders</p>
+    
+<table style="width:75%">
+  <tr>
+    <th>CustomerName</th>
+        <th>Product</th>
+            <th>Quantity</th>
+    <th> Date</th>
+  </tr>  
+  @if(@ViewBag.Orderinfos != null){
+      @foreach ( var order in @ViewBag.Orderinfos){
+    <tr>
+    <td>@order.Customerinfo.CustomerName</td>
+    <td>@order.ProductInfo.ProductName</td>
+    <td>@order.Quantity</td>
+    <td>@order.CreatedAt</td>
+    </tr>
+      }}
+</table>

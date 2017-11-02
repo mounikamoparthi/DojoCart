@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Wal-Mart API - JSON</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="javascript/search.js"></script>
+
+</head>
+
+<body>
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<div id="flipkart-navbar">
+    <div class="container">
+        <div class="row row1">
+            <ul class="largenav pull-right">
+                <li class="upper-links"><a class="links" [routerLink]="['/mylisting']">My Listing</a></li>
+                <li class="upper-links"><a class="links" [routerLink]="['/logout']">Logout</a></li>
+
+            </ul>
+        </div>
+        <div class="row row2">
+            <div class="col-sm-2">
+                <h2 style="margin:0px;"><span class="smallnav menu">☰ Brand</span></h2>
+                <h1 style="margin:0px;"><span class="largenav">DojoMart</span></h1>
+            </div>
+            <div class="flipkart-navbar-search smallsearch col-sm-8 col-xs-11">
+                <div class="row">
+                    <input class="flipkart-navbar-input col-xs-11" type="text" placeholder="Search for Products, Brands and more" name="searchStr"   [(ngModel)]="searchStr">
+                    <button class="flipkart-navbar-button col-xs-1">
+                        <svg width="15px" height="15px">
+                            <path d="M11.618 9.897l4.224 4.212c.092.09.1.23.02.312l-1.464 1.46c-.08.08-.222.072-.314-.02L9.868 11.66M6.486 10.9c-2.42 0-4.38-1.955-4.38-4.367 0-2.413 1.96-4.37 4.38-4.37s4.38 1.957 4.38 4.37c0 2.412-1.96 4.368-4.38 4.368m0-10.834C2.904.066 0 2.96 0 6.533 0 10.105 2.904 13 6.486 13s6.487-2.895 6.487-6.467c0-3.572-2.905-6.467-6.487-6.467 "></path>
+                        </svg>
+                    </button>
+                </div>
+              </div>
+            </div>
+    </div></div>
+
+  <header class="hero-unit" id="banner">
+    <div class="container">
+      <h1>Search: Walmart API</h1>
+      <form #form="ngForm" (ngSubmit) = "goNow(form.value)">
+        <div class="col-xs-4">
+          <div class="form-group">
+            <label for="walmart-query">Search for Item</label>
+            <input type="text" class="form-control walmart-query" name="query" placeholder="Cereal, Pasta, etc." ngModel>
+
+          </div>
+          <button class="btn btn-success query-submit" type = "submit">Submit</button>
+           </div>
+
+      </form>
+       </div>
+  </header>
+  <br>
+  <br>
+
+
+<div class="row bikes"   >
+    <div *ngIf="items!= null">
+    <div class="col-md-3 product" *ngFor= "let q of items">
+
+    <h5><b>{{q.name }}</b> </h5><br>
+
+    <img md-card-image src={{q.mediumImage}} style="width:150px;height:150px"><br>
+
+   <b>Price:</b> {{q.salePrice | currency:'USD':true  }}<br><br>
+
+
+    </div>
+  </div>
+  </div>
+
+
+
+
+</body>
+
+</html>

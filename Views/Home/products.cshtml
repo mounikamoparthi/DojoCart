@@ -1,0 +1,42 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+ 
+
+ <a  asp-controller="Home"  asp-action="orders"><button>Orders</button></a>
+ <a  asp-controller="Home"  asp-action="Index"><button>Dashboard</button></a>
+ <a  asp-controller="Home"  asp-action="products"><button>Products</button></a>
+<a  asp-controller="Home"  asp-action="logout"><button>Logout</button></a>
+<a  asp-controller="Home"  asp-action="customers"><button>Customers</button></a>
+
+
+    <p> Product Listing</p>
+     @if(@ViewBag.AllProductInfos != null){
+    @foreach(var a in  @ViewBag.AllProductInfos){
+        <img src=@a.Imageurl>
+        <p>@a.ProductName</p>
+        <p>@a.InitialQty</p>
+    }
+     }
+
+<form action="addproduct" method="post">
+      <p> Name: <input type="text" name="Productname"/></p>
+      <p> Description: <input type="text" name="Description"/></p>
+      <p> Imageurl: <input type="text" name="Imageurl"/></p>   
+    <p> InitialQty: <input type="number" name="InitialQty"/></p>
+    <button type="submit">Create!</button>
+</form>
+<div>
+    @{
+        if (@ViewBag.status=="prodaddfail"){
+        foreach(var error in ViewBag.errors)
+            {
+                if(@error.Errors.Count > 0)
+                {
+                    <p>@error.Errors[0].ErrorMessage</p>
+                }
+            }
+    
+        }
+    }
+    </div>

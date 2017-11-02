@@ -1,0 +1,14 @@
+<p>
+  listings works!
+   <a [routerLink]="['/mylisting']">My Listings</a>  
+    <a [routerLink]="['/shoppage']">Shopping</a> 
+     <!-- <a href="/shoppage">Shopping</a>   -->
+    <a href="/logout">Log out</a> 
+</p>
+
+  <div class="bikes" *ngFor="let b of allBikes; let idx = index">
+    {{b.title}}
+   
+    {{b.image}}
+    <img [src]=b.image>
+  </div>

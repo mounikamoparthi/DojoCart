@@ -1,0 +1,85 @@
+  <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- <meta charset="utf-8"> -->
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <title>Bicycle App</title>
+    <!-- Bootstrap -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  </head>
+<body>
+  <div class = "register">
+<form (submit)="registration()" #formData='ngForm'>
+  <div class = "inputwrap">
+  <p>
+    Email ID:
+    <input
+    type="text"
+    class = "next"
+    name="EmailAddress"
+    required
+    minlength="4"
+    maxlength="24"
+    required pattern="^([A-Za-z0-9._\-]+)@([a-zA-Z0-9._\-]+)\.([a-zA-Z]+)$"
+    [(ngModel)]="reg_user.EmailAddress"
+    #EmailAddress='ngModel'
+  />
+  </p>
+ <span style="color: red;" *ngIf="EmailAddress.errors && EmailAddress.touched">Email id should atleast be 4 characters long</span> <br>
+  </div>
+<div class = "inputwrap">
+ <p>
+  First Name: <input
+    type="text"
+    class = "next"
+    name="FirstName"
+    required
+    minlength="4"
+    maxlength="24"
+    [(ngModel)]="reg_user.FirstName"
+    #FirstName='ngModel'
+  />
+    </p>
+<span style="color: red;" *ngIf="FirstName.errors && FirstName.touched">First Name should atleast be 4 characters long</span> <br>
+</div>
+<div class = "inputwrap">
+<p>
+    Last Name:
+  <input
+    type="text"
+    class = "next"
+    name="LastName"
+    required
+    minlength="4"
+    maxlength="24"
+    [(ngModel)]="reg_user.LastName"
+    #LastName='ngModel'
+  />
+    </p>
+<span style="color: red;" *ngIf="LastName.errors && LastName.touched">Last Name  should atleast be 4 characters long</span> <br>
+</div>
+<div class = "inputwrap">
+<p> Password:
+  <input
+    type="password"
+    class = "next"
+    name="Password"
+    required
+    minlength="10"
+    maxlength="24"
+    pattern="^([a-zA-Z0-9@*#]{8,15})$"
+    [(ngModel)]="reg_user.Password"
+    #Password='ngModel'
+  />
+    </p>
+<span style="color: red;" *ngIf="Password.errors && Password.touched">Password  should atleast be 4 characters long</span> <br>
+</div>
+
+ <button type="submit" [disabled]="!formData.valid">Register</button>
+</form>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
